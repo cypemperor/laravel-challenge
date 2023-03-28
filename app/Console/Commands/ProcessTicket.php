@@ -26,11 +26,11 @@ class ProcessTicket extends Command
      */
     public function handle(): void
     {
-        $tickets = Ticket::where('ticket_status', '=', false)->orderBy('created_at', 'DESC')->take(5)->get();
+        $tickets = Ticket::where('ticket_status', '=', false)->orderBy('created_at', 'ASC')->take(5)->get();
 
         foreach ($tickets as $ticket) {
             $ticket->ticket_status = true;
-            $ticket->save();
+            $ticket->update();
         }
 
         $this->info('Tickets processed.');

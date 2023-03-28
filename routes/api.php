@@ -22,4 +22,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/tickets/unprocessed', [TicketController::class, 'unprocessedTickets']);
 Route::get('/tickets/processed', [TicketController::class, 'processedTickets']);
 Route::get('/tickets/user/{email}', [TicketController::class, 'userTickets']);
-
+Route::get('/tickets/stats', [TicketController::class, 'ticketStats']);
