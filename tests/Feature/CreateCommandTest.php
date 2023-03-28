@@ -11,7 +11,7 @@ class CreateCommandTest extends TestCase
      */
     public function test_createTicket(): void
     {
-        $this->artisan('create-ticket')
-            ->expectsOutput('Ticket Created.');
+        $this->artisan('create:ticket')
+            ->expectsOutput('Tickets Created.');
     }
 }
