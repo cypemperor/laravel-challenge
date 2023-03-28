@@ -9,21 +9,25 @@ class TicketController extends Controller
 {
     public function unprocessedTickets()
     {
-        $unprocessedTickets = Ticket::where('ticket_status', false)->get();
+        $unprocessedTickets = Ticket::where('ticket_status', false)->paginate(10);
 
         return response()->json($unprocessedTickets);
     }
 
     public function processedTickets()
     {
-        $unprocessedTickets = Ticket::where('ticket_status', true)->get();
+        $unprocessedTickets = Ticket::where('ticket_status', true)->paginate(10);
 
         return response()->json($unprocessedTickets);
     }
 
     public function userTickets(string $email)
     {
-        $userTickets = Ticket::where('user_email', $email)->get();
+        $userTickets = Ticket::where('user_email', $email)->paginate(10);
+
+        if ($userTickets->isEmpty()) {
+            return response()->json(['message' => 'There is no ticket created by the email provided.'], 404);
+        }
 
         return response()->json($userTickets);
     }
