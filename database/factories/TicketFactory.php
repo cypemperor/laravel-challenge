@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,8 +20,7 @@ class TicketFactory extends Factory
         return [
             'subject' => fake()->sentence(),
             'content' => fake()->text(),
-            'user_name' => fake()->name(),
-            'user_email' => fake()->unique()->safeEmail(),
+            'user_id' => User::all()->random()->id
         ];
     }
 }

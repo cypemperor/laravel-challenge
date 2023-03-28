@@ -15,8 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('subject');
             $table->text('content');
-            $table->string('user_name');
-            $table->string('user_email');
+            $table->foreignId('user_id')->constrained();
             $table->boolean('ticket_status')->default(false);
             $table->timestamps();
         });

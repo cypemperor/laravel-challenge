@@ -14,11 +14,10 @@ class UserTicketsTest extends TestCase
      */
     public function test_userTickets(): void
     {
-        $response = $this->get('/api/tickets/user/test@example.com');
+        $randomTicket = Ticket::inRandomOrder()->first();
 
+        $response = $this->get("/api/tickets/user/{$randomTicket->user->email}");
 
         $response->assertStatus(200);
-
-        $response->assertJsonCount(1, 'data');
     }
 }

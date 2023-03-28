@@ -13,7 +13,7 @@ class UserHasNoTicketsTest extends TestCase
      */
     public function test_userHasNoTickets(): void
     {
-        $response = $this->get('/api/tickets/user/nouser@nouserexists.info');
+        $response = $this->get('/api/tickets/user/test@test.com');
 
         $response->assertStatus(404);
         $response->assertJson([
