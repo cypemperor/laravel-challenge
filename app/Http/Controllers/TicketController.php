@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\DB;
 
 class TicketController extends Controller
 {
+    /**
+     * Method for finding unprocessed Tickets
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function unprocessedTickets()
     {
         $unprocessedTickets = Ticket::where('ticket_status', false)->paginate(10);
@@ -16,6 +21,11 @@ class TicketController extends Controller
         return response()->json($unprocessedTickets);
     }
 
+    /**
+     * Method for finding processed Tickets
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function processedTickets()
     {
         $unprocessedTickets = Ticket::where('ticket_status', true)->paginate(10);
@@ -23,6 +33,12 @@ class TicketController extends Controller
         return response()->json($unprocessedTickets);
     }
 
+    /**
+     * Find tickets that belongs to the user with the given email address.
+     *
+     * @param string $email
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function userTickets(string $email)
     {
         $user = User::where('email', $email)->first();
@@ -40,6 +56,11 @@ class TicketController extends Controller
         return response()->json($userTickets);
     }
 
+    /**
+     * Provides Stats.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function ticketStats()
     {
 
